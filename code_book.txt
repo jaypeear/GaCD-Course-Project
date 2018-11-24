@@ -85,7 +85,7 @@ observation:
   ++++++++++++
   1. Clone the repository and set working directory to the root of the repository.
   2. Data files above are under ./merged
-  3. read the files into R using readRDS(filename)
+  3. read the files into R using read_rds(filename)
 
 3. Files
   +++++++
