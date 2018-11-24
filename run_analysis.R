@@ -14,7 +14,7 @@ fsep <- .Platform$file.sep
 dataDir <- "./original/data"
 unifiedFilesDir <- file.path(".", "merged")
 avgXFileFilename <- file.path(unifiedFilesDir, "averaged_by_action_by_subject.rds")
-bySignalAvgXFileFilename <- file.path(unifiedFilesDir, "averaged_by_action_by_subject_by_signal.rdsstr")
+bySignalAvgXFileFilename <- file.path(unifiedFilesDir, "averaged_by_action_by_subject_by_signal.rds")
 
 ## Assumption : 
 ##   1. All data sets files exist
