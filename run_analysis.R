@@ -13,7 +13,7 @@ fsep <- .Platform$file.sep
 
 dataDir <- "./original/data"
 unifiedFilesDir <- file.path(".", "merged")
-avgXFileFilename <- file.path(unifiedFilesDir, "averaged_by_action_by_subject.rds")
+avgXFileFilename <- file.path(unifiedFilesDir, "averaged_by_action_by_subject.txt")
 bySignalAvgXFileFilename <- file.path(unifiedFilesDir, "averaged_by_action_by_subject_by_signal.rds")
 
 ## Assumption : 
@@ -145,7 +145,7 @@ avgXFile <- cbind(avgXFile, Subject = subjects)
 
 avgXFile <- avgXFile %>% group_by(Activity, Subject) %>% summarise_all(mean)
 
-write_rds(avgXFile, avgXFileFilename)
+write.table(avgXFile, file=avgXFileFilename, row.names=FALSE)
 print(sprintf("Created a new data set: File: <%s> [cols: %d, rows: %d] : head for 2 columns following", 
               bySignalAvgXFileFilename, ncol(avgXFile), nrow(avgXFile)))
 print(head(avgXFile %>% select("Subject", "Activity", "tBodyAccMag-mean()", "tBodyAccMag-std()"), n=20L))

@@ -55,7 +55,7 @@ Stages:
       to the dataset.
     - Group the data by Activity and Subject using group_by()
     - Calculate the averages of the data groups using summarize_all(mean)
-    - Write the output file using write_rds()
+    - Write the output file using write_table(..., row.names = FALSE)
 5. Addition. In here an additional optional file where an observation is reduced from all 66 variables to
    an observation per signal. E.g. per BodyGyro X/Y/Z, mean and std etc. So the structure a set of 17 such signals
    and a table of 180 rows X number of cols varies per signal. (lines 156 - 163)
@@ -71,7 +71,7 @@ Stages:
 Loading the Datasets
 ====================
 The datasets (2 options were provided) are under the directory merged and gave the .tds extension.
-Loading into R is using read_rds("filename").
+Loading into R is using read.table("filename") or read_rds() based on the type.
 
 =====
 Files

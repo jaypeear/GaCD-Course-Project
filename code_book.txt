@@ -74,7 +74,7 @@ In addition, there are additional variables,
 There are 2 datasets provided. The first meets the steps of the course assignment.
 In the second, the first data set was refined such that each measurement is a separate
 observation:
-1. averaged_by_action_by_subject.rds - Table with 68 columns and 180 (30 x 6 activities) rows.
+1. averaged_by_action_by_subject.txt - Table with 68 columns and 180 (30 x 6 activities) rows.
    Each row includes Activity and Subject identifiers and 66 values of the averages
    of the measurements for each variable.
 2. averaged_by_action_by_subject_by_signal.rds" - A collection of tables where Each
@@ -85,7 +85,7 @@ observation:
   ++++++++++++
   1. Clone the repository and set working directory to the root of the repository.
   2. Data files above are under ./merged
-  3. read the files into R using read_rds(filename)
+  3. read the files into R using read.table(filename) or read_rds(filename) based on the file type
 
 3. Files
   +++++++
