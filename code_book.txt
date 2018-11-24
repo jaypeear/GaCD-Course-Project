@@ -1,0 +1,133 @@
+Code Book:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Getting and Cleaning Data - Course Project:
+Tidy dataset - Human Activity Recognition Using Smart Phones
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+In this project, the dataset below was reorganized to facilitate further analysis.
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones .
+
+The experiment was carried out in the following manner (taken from the original doc):
+" The experiments have been carried out with a group of 30 volunteers within an age
+bracket of 19-48 years. Each person performed six activities
+(WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
+wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded
+accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial
+angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to
+label the data manually. The obtained dataset has been randomly partitioned into two sets,
+where 70% of the volunteers was selected for generating the training data and 30% the test data."
+
+1. Dataset
+   =======
+The dataset includes the following variables that are the mean and standard deviation
+variables to the original dataset (detailed in: original/README.txt).
+The values in each row are the average value of the recordings in the original datasets
+per activity per subject (see the description of the variables below):
+ [1,] "tBodyAcc-mean()-X"           "tBodyAcc-std()-X"
+ [2,] "tBodyAcc-mean()-Y"           "tBodyAcc-std()-Y"
+ [3,] "tBodyAcc-mean()-Z"           "tBodyAcc-std()-Z"
+ [4,] "tGravityAcc-mean()-X"        "tGravityAcc-std()-X"
+ [5,] "tGravityAcc-mean()-Y"        "tGravityAcc-std()-Y"
+ [6,] "tGravityAcc-mean()-Z"        "tGravityAcc-std()-Z"
+ [7,] "tBodyAccJerk-mean()-X"       "tBodyAccJerk-std()-X"
+ [8,] "tBodyAccJerk-mean()-Y"       "tBodyAccJerk-std()-Y"
+ [9,] "tBodyAccJerk-mean()-Z"       "tBodyAccJerk-std()-Z"
+[10,] "tBodyGyro-mean()-X"          "tBodyGyro-std()-X"
+[11,] "tBodyGyro-mean()-Y"          "tBodyGyro-std()-Y"
+[12,] "tBodyGyro-mean()-Z"          "tBodyGyro-std()-Z"
+[13,] "tBodyGyroJerk-mean()-X"      "tBodyGyroJerk-std()-X"
+[14,] "tBodyGyroJerk-mean()-Y"      "tBodyGyroJerk-std()-Y"
+[15,] "tBodyGyroJerk-mean()-Z"      "tBodyGyroJerk-std()-Z"
+[16,] "tBodyAccMag-mean()"          "tBodyAccMag-std()"
+[17,] "tGravityAccMag-mean()"       "tGravityAccMag-std()"
+[18,] "tBodyAccJerkMag-mean()"      "tBodyAccJerkMag-std()"
+[19,] "tBodyGyroMag-mean()"         "tBodyGyroMag-std()"
+[20,] "tBodyGyroJerkMag-mean()"     "tBodyGyroJerkMag-std()"
+[21,] "fBodyAcc-mean()-X"           "fBodyAcc-std()-X"
+[22,] "fBodyAcc-mean()-Y"           "fBodyAcc-std()-Y"
+[23,] "fBodyAcc-mean()-Z"           "fBodyAcc-std()-Z"
+[24,] "fBodyAccJerk-mean()-X"       "fBodyAccJerk-std()-X"
+[25,] "fBodyAccJerk-mean()-Y"       "fBodyAccJerk-std()-Y"
+[26,] "fBodyAccJerk-mean()-Z"       "fBodyAccJerk-std()-Z"
+[27,] "fBodyGyro-mean()-X"          "fBodyGyro-std()-X"
+[28,] "fBodyGyro-mean()-Y"          "fBodyGyro-std()-Y"
+[29,] "fBodyGyro-mean()-Z"          "fBodyGyro-std()-Z"
+[30,] "fBodyAccMag-mean()"          "fBodyAccMag-std()"
+[31,] "fBodyBodyAccJerkMag-mean()"  "fBodyBodyAccJerkMag-std()"
+[32,] "fBodyBodyGyroMag-mean()"     "fBodyBodyGyroMag-std()"
+[33,] "fBodyBodyGyroJerkMag-mean()" "fBodyBodyGyroJerkMag-std()"
+
+In addition, there are additional variables,
+1. "Activity" - a description of the activity the subject was performing for the reading.
+   Values are:
+   WALKING
+   WALKING_UPSTAIRS
+   WALKING_DOWNSTAIRS
+   SITTING
+   STANDING
+   LAYING
+   The dataset is using the string (e.g "LAYING" instead of originally : 6) representation
+   per the steps requested in the exercise definition.
+2. "Subject" - an integer value between 1 and 30 representing the subject of the
+  readings.
+
+There are 2 datasets provided. The first meets the steps of the course assignment.
+In the second, the first data set was refined such that each measurement is a separate
+observation:
+1. averaged_by_action_by_subject.rds - Table with 68 columns and 180 (30 x 6 activities) rows.
+   Each row includes Activity and Subject identifiers and 66 values of the averages
+   of the measurements for each variable.
+2. averaged_by_action_by_subject_by_signal.rds" - A collection of tables where Each
+   table holds that data for one measurement for every action and subject. E.g
+   Body Gyro data for Walking by customer.
+
+2. How to use
+  ++++++++++++
+  1. Clone the repository and set working directory to the root of the repository.
+  2. Data files above are under ./merged
+  3. read the files into R using readRDS(filename)
+
+3. Files
+  +++++++
+  The directory structure is the following
+  ├── README.md   - Project metadata including explanation of the program to derive the datasets.
+  ├── code_book.txt - Tidy dataset structure
+  ├── merged - Merged data files from original/data/ test and train (assignment #1)
+  │   ├── Inertial\ Signals - The files are a concatenation of the _train and _test files in the original files.
+  │   │   ├── body_acc_x_unified.txt
+  │   │   ├── body_acc_y_unified.txt
+  │   │   ├── body_acc_z_unified.txt
+  │   │   ├── body_gyro_x_unified.txt
+  │   │   ├── body_gyro_y_unified.txt
+  │   │   ├── body_gyro_z_unified.txt
+  │   │   ├── total_acc_x_unified.txt
+  │   │   ├── total_acc_y_unified.txt
+  │   │   └── total_acc_z_unified.txt
+  │   ├── X_unified.txt - Concatenation of X_train.txt and X_test.txt 
+  │   ├── averaged_by_action_by_subject.rds - Tidy data set - main for assignment #5
+  │   ├── averaged_by_action_by_subject_by_signal.rds - Tidy data - an option for assignment #5
+  │   ├── subject_unified.txt - Concatenation of subject_train.txt and subject_test.txt
+  │   └── y_unified.txt -  Concatenation of y_train.txt and y_test.txt 
+  ├── original - The original data provided
+  │   ├── README.txt
+  │   ├── activity_labels.txt
+  │   ├── data
+  │   │   ├── README.txt
+  │   │   ├── activity_labels.txt
+  │   │   ├── features.txt
+  │   │   ├── features_info.txt
+  │   │   ├── test
+  │   │   │   ├── Inertial\ Signals
+  │   │   │   │   ├── .......
+  │   │   │   ├── X_test.txt
+  │   │   │   ├── subject_test.txt
+  │   │   │   └── y_test.txt
+  │   │   └── train
+  │   │       ├── Inertial\ Signals
+  │   │       │   ├── ........
+  │   │       ├── X_train.txt
+  │   │       ├── subject_train.txt
+  │   │       └── y_train.txt
+  │   ├── features.txt
+  │   └── features_info.txt
+  └── run_analysis.R - The R program to merge the data sets and derive the tidy datasets(s)
